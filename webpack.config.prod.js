@@ -13,7 +13,7 @@ module.exports = {
   },
   output: {
     path: path.join(__dirname, "build"),
-    publicPath: process.env.SHOW_NETLIFY_BADGE ? "": "/react-jsonschema-form/"
+    publicPath: "/kingsman/"
   },
   plugins: [
     new MonacoWebpackPlugin({
