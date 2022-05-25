@@ -39,13 +39,13 @@ jobs:
       - name: Download built files
         uses: actions/download-artifact@v2
         with:
-          name: dist
-          path: dist
+          name: build
+          path: build
       - name: Deploy playground
         uses: crazy-max/ghaction-github-pages@v2.6.0
         with:
           keep_history: true
           target_branch: gh-pages
-          build_dir: dist
+          build_dir: build
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
