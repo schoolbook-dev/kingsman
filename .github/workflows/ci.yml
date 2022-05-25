@@ -3,8 +3,8 @@ name: CI
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
+  # pull_request:
+  #   branches: [ main ]
 
 jobs:
   build:
@@ -28,24 +28,30 @@ jobs:
     - name: Build
       run: npm run build
 
+    - name: Deploy to pages
+      uses: JamesIves/github-pages-deploy-action@v4.3.3
+      with:
+        branch: gh-pages # The branch the action should deploy to.
+        folder: build # The folder the action should deploy.
+
 #    - run: npm test
 
-  deploy_playground:
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
-    name: Deploy playground to GitHub Pages
-    needs: [build]
-    steps:
-      - name: Download built files
-        uses: actions/download-artifact@v2
-        with:
-          name: build
-          path: build
-      - name: Deploy playground
-        uses: crazy-max/ghaction-github-pages@v2.6.0
-        with:
-          keep_history: true
-          target_branch: gh-pages
-          build_dir: build
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  # deploy_playground:
+  #   runs-on: ubuntu-latest
+  #   if: github.ref == 'refs/heads/main'
+  #   name: Deploy playground to GitHub Pages
+  #   needs: [build]
+  #   steps:
+  #     - name: Download built files
+  #       uses: actions/download-artifact@v2
+  #       with:
+  #         name: build
+  #         path: build
+  #     - name: Deploy playground
+  #       uses: crazy-max/ghaction-github-pages@v2.6.0
+  #       with:
+  #         keep_history: true
+  #         target_branch: gh-pages
+  #         build_dir: build
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
