@@ -344,7 +344,7 @@ class Playground extends Component {
     // set default theme
     const theme = "default";
     // initialize state with Simple data sample
-    const { schema, uiSchema, formData, validate } = samples.Simple;
+    const { schema, uiSchema, formData, validate, transform } = samples["Конфигурация лайков"];
     this.state = {
       form: false,
       schema,
@@ -474,6 +474,16 @@ class Playground extends Component {
     }
   };
 
+  transform = (formData) => {
+    const { transform } = this.state;
+
+    if (transform) {
+      return transform(formData);
+    } else {
+      return formData;
+    }
+  }
+
   render() {
     const {
       schema,
@@ -506,12 +516,12 @@ class Playground extends Component {
     return (
       <div className="container-fluid">
         <div className="page-header">
-          <h1>react-jsonschema-form</h1>
+          <h1>kingsman – content is the king</h1>
           <div className="row">
             <div className="col-sm-8">
               <Selector onSelected={this.load} />
             </div>
-            <div className="col-sm-2">
+            {/* <div className="col-sm-2">
               <Form
                 idPrefix="rjsf_options"
                 schema={liveSettingsSchema}
@@ -534,28 +544,31 @@ class Playground extends Component {
                 />
               )}
               <CopyLink shareURL={this.state.shareURL} onShare={this.onShare} />
-            </div>
+            </div> */}
           </div>
         </div>
-        <div className="col-sm-7">
+        <div className="col-sm-4">
           <Editor
             title="JSONSchema"
             code={toJson(schema)}
             onChange={this.onSchemaEdited}
+            disabled
           />
           <div className="row">
-            <div className="col-sm-6">
+            <div className="col-sm-4">
               <Editor
                 title="UISchema"
                 code={toJson(uiSchema)}
                 onChange={this.onUISchemaEdited}
+                disabled
               />
             </div>
-            <div className="col-sm-6">
+            <div className="col-sm-4">
               <Editor
                 title="formData"
                 code={toJson(formData)}
                 onChange={this.onFormDataEdited}
+                disabled
               />
             </div>
           </div>
@@ -571,7 +584,7 @@ class Playground extends Component {
             </div>
           )}
         </div>
-        <div className="col-sm-5">
+        <div className="col-sm-8">
           {this.state.form && (
             <DemoFrame
               head={
@@ -610,6 +623,10 @@ class Playground extends Component {
                 onChange={this.onFormDataChange}
                 noHtml5Validate={true}
                 onSubmit={({ formData }, e) => {
+                  if (navigator.clipboard) {
+                    navigator.clipboard.writeText(JSON.stringify(this.transform(formData)));
+                    console.log("Copied to clipboard");
+                  }
                   console.log("submitted formData", formData);
                   console.log("submit event", e);
                 }}
