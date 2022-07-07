@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   schema: {
     title: "Шапка",
     type: "object",
