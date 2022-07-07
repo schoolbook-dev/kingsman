@@ -44,7 +44,8 @@ module.exports = {
       },
       highlightType: {
         type: "string",
-        enum: ["highlight\u002Fword", "highlight\u002Fletter"]
+        enum: ["highlight\u002Fword", "highlight\u002Fletter", "highlight\u002Fstress",
+        "morpheme\u002Froot"]
       }
     },
   },

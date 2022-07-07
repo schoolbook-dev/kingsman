@@ -37,7 +37,6 @@ export default {
     },
   },
   uiSchema: {
-   
       desc: {
         "ui:widget": "textarea",
         "ui:options": {
