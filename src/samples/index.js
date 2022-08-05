@@ -1,12 +1,13 @@
 import likesConfig from "./likesConfig";
 import unionCheck from "./unionCheck";
 import highlight from "./highlight";
-import cap from "./cap"
+import head from "./head"
+import finish from "./finish"
 
 export const samples = {
   "Конфигурация лайков": likesConfig,
   "MULTIUNION (числа)": unionCheck,
   "поле выбора": highlight,
-  "шапка": cap,
+  "шапка": head,
+  "финишер": finish,
 };
-

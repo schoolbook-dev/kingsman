@@ -18,19 +18,19 @@ const textToMarkup = (text, highlightType) => {
 
   return {
     marker: {
-      type: 'highlight',
+      type: "highlight",
       options: {
         text: text.replace(HIGHLIGHT_SELECTION_RE, cleanTextReplacer),
         highlight_types: {
-          highlight: [highlightType]
-        }
-      }
+          highlight: [highlightType],
+        },
+      },
     },
     answer: [
       {
-        [highlightType]: spans
-      }
-    ]
+        [highlightType]: spans,
+      },
+    ],
   };
 };
 
@@ -40,13 +40,16 @@ module.exports = {
     properties: {
       text: {
         type: "string",
-        title: "text"
+        title: "text",
       },
       highlightType: {
         type: "string",
-        enum: ["highlight\u002Fword", "highlight\u002Fletter", "highlight\u002Fstress",
-        "morpheme\u002Froot"]
-      }
+        enum: [
+          "highlight\u002Fword",
+          "highlight\u002Fletter",
+          "highlight/stress",
+        ],
+      },
     },
   },
   uiSchema: {
@@ -56,6 +59,6 @@ module.exports = {
   },
   formData: {},
   transform: ({ text, highlightType }) => {
-    return textToMarkup(text, highlightType)
-  }
+    return textToMarkup(text, highlightType);
+  },
 };
