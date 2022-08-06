@@ -3,6 +3,8 @@ import unionCheck from "./unionCheck";
 import highlight from "./highlight";
 import head from "./head"
 import finish from "./finish"
+import syntax from "./syntax";
+
 
 export const samples = {
   "Конфигурация лайков": likesConfig,
@@ -10,4 +12,5 @@ export const samples = {
   "поле выбора": highlight,
   "шапка": head,
   "финишер": finish,
+  "разбор предложения": syntax,
 };

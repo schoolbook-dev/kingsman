@@ -44,11 +44,23 @@ module.exports = {
       },
       highlightType: {
         type: "string",
-        enum: [
-          "highlight\u002Fword",
-          "highlight\u002Fletter",
-          "highlight/stress",
-        ],
+        anyOf: [
+          {
+            type: "string",
+            enum: ["highlight\u002Fword"],
+            title: "Выделение слова",
+          },
+          {
+            type: "string",
+            enum: ["highlight\u002Fletter"],
+            title: "Выделение буквы",
+          },
+          {
+            type: "string",
+            enum: ["highlight\u002Fstress"],
+            title: "Выделение ударения",
+          },
+        ]
       },
     },
   },
